@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DetailScreen from '../screens/detail/detail.screen';
 import { MainParamList, Screen } from './types';
 import TabNavigator from './tab/tab.navigator';
+import DetailScreen from '../screens/detail/detail.screen';
 
 const Stack = createNativeStackNavigator<MainParamList>(); //viene creato lo stack dove verranno depositate tutte le schermate
 const RootStack = () => {
