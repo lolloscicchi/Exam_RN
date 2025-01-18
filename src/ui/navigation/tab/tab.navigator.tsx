@@ -21,9 +21,9 @@ export default function TabNavigator() {
                   return 'star';
               }
             };
-            return <Ionicons name={iconName()} size={24} color={focused ? 'tomato' : 'gray'} />;
+            return <Ionicons name={iconName()} size={24} color={focused ? 'blue' : 'gray'} />;
           },
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: 'blue',
           tabBarInactiveTintColor: 'gray',
         };
       }}>
