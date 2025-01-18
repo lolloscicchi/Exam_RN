@@ -1,5 +1,5 @@
+import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { memo } from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainParamList } from '../../navigation/types';
 import { Screen } from 'react-native-screens';
@@ -18,4 +18,4 @@ const DetailScreen = ({ navigation }: Props) => {
     </View>
   );
 };
-export default memo(DetailScreen);
+export default DetailScreen;
