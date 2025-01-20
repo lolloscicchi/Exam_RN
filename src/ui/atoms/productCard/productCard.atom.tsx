@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './productCard.styles';
-import { Product } from '../../models/product.model';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Product } from '../../models/product.model';
 
-const ProductCard = ({ product }: Product) => {
+interface ProductCardProps {
+  product: Product;
+}
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <View style={styles.card}>
       <View style={styles.imageButtonContainer}>

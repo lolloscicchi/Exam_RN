@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   card: {
+    flex: 1,
     backgroundColor: '#f3f6f0',
     flexDirection: 'row',
-    flex: 1,
     borderRadius: 8,
     padding: 16,
     margin: 8,
