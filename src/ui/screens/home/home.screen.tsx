@@ -2,9 +2,10 @@ import React, { useCallback, useEffect } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { MainParamList, Screen } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Product, useProducts } from '../../hook/useProducts.facade';
+import { useProducts } from '../../hook/useProducts.facade';
 import ProductCard from '../../atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
+import { Product } from '../../models/product.model';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
