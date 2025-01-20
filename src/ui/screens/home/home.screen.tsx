@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
-import { Button, FlatList, ListRenderItem, Text, View } from 'react-native';
-import { memo } from 'react';
+import { FlatList, ListRenderItem, View } from 'react-native';
 import { MainParamList, Screen } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Product, useProducts } from '../../hook/useProducts.facade';
 import ProductCard from '../../atoms/productCard/productCard.atom';
+import { styles } from './home.styles';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
@@ -30,17 +30,7 @@ const HomeScreen = ({ navigation }: Props) => {
   // ** UI ** //
 
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-        <Text>{'HOME SCREEN'}</Text>
-        <Button
-          title={'Go to Details'}
-          onPress={() => {
-            navigation.navigate(Screen.Detail);
-          }}
-        />
-      </View>
-
+    <View style={styles.container}>
       <FlatList
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
@@ -50,4 +40,4 @@ const HomeScreen = ({ navigation }: Props) => {
     </View>
   );
 };
-export default memo(HomeScreen);
+export default HomeScreen;
