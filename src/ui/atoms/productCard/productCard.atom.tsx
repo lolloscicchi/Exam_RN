@@ -15,7 +15,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity>
-            <Ionicons name={'bookmark'} size={40} />
+            <Ionicons name={'cart'} size={40} />
           </TouchableOpacity>
           <TouchableOpacity>
             <Ionicons name={'bookmark-outline'} size={40} />
