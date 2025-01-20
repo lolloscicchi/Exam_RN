@@ -12,13 +12,35 @@ interface Props {
 }
 
 const HomeScreen = ({ navigation }: Props) => {
-  const { products, setProducts, refreshProducts } = useProducts();
+  const {
+    products,
+    setProducts,
+    favoriteIds,
+    setFavoriteIds,
+    refreshProducts,
+    loadFavorites,
+    updateFavoriteIds,
+  } = useProducts();
 
   // ** CALLBACKS ** //
 
-  const renderItem = useCallback<ListRenderItem<Product>>(({ item }) => {
-    return <ProductCard product={item} />;
-  }, []);
+  const renderItem = useCallback<ListRenderItem<Product>>(
+    ({ item }) => {
+      return (
+        <ProductCard
+          product={item}
+          openCart={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+          isFavorite={favoriteIds.includes(item.id)}
+          switchFavorite={() => {
+            updateFavoriteIds(item);
+          }}
+        />
+      );
+    },
+    [favoriteIds, updateFavoriteIds]
+  );
 
   const ItemSeparatorComponent = useCallback(() => <View style={{ height: 20 }}></View>, []);
 
@@ -26,7 +48,9 @@ const HomeScreen = ({ navigation }: Props) => {
 
   useEffect(() => {
     refreshProducts();
-  }, [refreshProducts]);
+    loadFavorites();
+    console.log(favoriteIds);
+  }, [favoriteIds, loadFavorites, refreshProducts]);
 
   // ** UI ** //
 

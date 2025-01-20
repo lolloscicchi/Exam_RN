@@ -6,8 +6,11 @@ import { Product } from '../../models/product.model';
 
 interface ProductCardProps {
   product: Product;
+  openCart: () => void;
+  isFavorite: boolean;
+  switchFavorite: () => void;
 }
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, openCart, isFavorite, switchFavorite }: ProductCardProps) => {
   return (
     <View style={styles.card}>
       <View style={styles.imageButtonContainer}>
@@ -17,8 +20,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <TouchableOpacity>
             <Ionicons name={'cart'} size={40} />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons name={'bookmark-outline'} size={40} />
+          <TouchableOpacity onPress={switchFavorite}>
+            <Ionicons name={isFavorite ? 'bookmark' : 'bookmark-outline'} size={40} />
           </TouchableOpacity>
         </View>
       </View>
