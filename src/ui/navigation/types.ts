@@ -1,12 +1,12 @@
 export enum Screen {
   Home = 'Home',
   Detail = 'Detail',
-  Favourite = 'Favourite',
+  Favorite = 'Favorite',
 }
 
 export type TabParams = {
   [Screen.Home]: undefined; // Home ha il proprio Stack interno
-  [Screen.Favourite]: undefined;
+  [Screen.Favorite]: undefined;
 };
 
 // Per il RootStack
