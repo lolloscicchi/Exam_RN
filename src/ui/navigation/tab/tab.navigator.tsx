@@ -12,23 +12,37 @@ export default function TabNavigator() {
       screenOptions={({ route }) => {
         return {
           headerShown: true,
+          tabBarStyle: {
+            height: 60,
+            backgroundColor: '#889f89',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+          },
           tabBarIcon: ({ focused }) => {
             const iconName = () => {
               switch (route.name) {
                 case Screen.Home:
                   return 'home';
-                case Screen.Favourite:
-                  return 'star';
+                case Screen.Favorite:
+                  return 'bookmark';
               }
             };
-            return <Ionicons name={iconName()} size={24} color={focused ? 'blue' : 'gray'} />;
+            return <Ionicons name={iconName()} size={35} color={focused ? '#f2f7f0' : 'gray'} />;
           },
-          tabBarActiveTintColor: 'blue',
+          tabBarActiveTintColor: '#f2f7f0',
           tabBarInactiveTintColor: 'gray',
+          tabBarIconStyle: {
+            height: 35,
+            width: 35,
+          },
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: 300,
+          },
         };
       }}>
       <Tab.Screen name={Screen.Home} component={HomeScreen} />
-      <Tab.Screen name={Screen.Favourite} component={FavoriteScreen} />
+      <Tab.Screen name={Screen.Favorite} component={FavoriteScreen} />
     </Tab.Navigator>
   );
 }
