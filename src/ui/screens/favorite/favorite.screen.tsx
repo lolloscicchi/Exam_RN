@@ -30,8 +30,11 @@ const FavoriteScreen = ({ navigation }: Props) => {
       return (
         <ProductCard
           product={item}
-          openCart={function (): void {
-            throw new Error('Function not implemented.');
+          openProduct={() => {
+            if (!item.id) return;
+            navigation.navigate(Screen.Detail, {
+              id: item.id,
+            });
           }}
           isFavorite={favoriteIds.includes(item.id)}
           switchFavorite={() => {
