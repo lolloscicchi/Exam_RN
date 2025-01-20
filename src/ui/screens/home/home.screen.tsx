@@ -42,15 +42,21 @@ const HomeScreen = ({ navigation }: Props) => {
     [favoriteIds, updateFavoriteIds]
   );
 
-  const ItemSeparatorComponent = useCallback(() => <View style={{ height: 20 }}></View>, []);
+  const ItemSeparatorComponent = useCallback(
+    () => <View style={styles.itemSeparatorComponent}></View>,
+    []
+  );
 
   // ** USE EFFECTS ** //
 
   useEffect(() => {
-    refreshProducts();
-    loadFavorites();
-    console.log(favoriteIds);
-  }, [favoriteIds, loadFavorites, refreshProducts]);
+    const unsubscribe = navigation.addListener('focus', () => {
+      refreshProducts();
+      loadFavorites();
+      console.log(navigation);
+    });
+    return unsubscribe;
+  }, [favoriteIds, loadFavorites, navigation, refreshProducts]);
 
   // ** UI ** //
 
