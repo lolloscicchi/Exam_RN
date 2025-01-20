@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
+import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import { MainParamList, Screen } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useProducts } from '../../hook/useProducts.facade';
-import ProductCard from '../../atoms/productCard/productCard.atom';
+import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
 import { Product } from '../../models/product.model';
 
@@ -65,6 +65,11 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.categoriesFilterContainer}>
+        <TouchableOpacity>
+          <Text>{'titolo'}</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}

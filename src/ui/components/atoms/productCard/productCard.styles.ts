@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../../theme/colors.theme';
 
 export const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: '#f3f6f0',
+    backgroundColor: COLORS.secondary,
     borderRadius: 8,
     padding: 16,
-    margin: 8,
-    shadowColor: '#000',
+    shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -39,17 +39,17 @@ export const styles = StyleSheet.create({
   },
   price: {
     fontSize: 16,
-    color: '#2ecc71',
+    color: COLORS.greenPrice,
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: '#555',
+    color: COLORS.darkGrey,
     marginBottom: 8,
   },
   rating: {
     fontSize: 14,
-    color: '#888',
+    color: COLORS.lightGrey,
   },
   detailButton: {
     marginTop: 4,
@@ -57,13 +57,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: '#899e89',
+    backgroundColor: COLORS.primary,
     borderRadius: 8,
-    shadowColor: '#000',
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 2,
     },
   },
-  detailButtonText: { color: '#f3f6f0', fontSize: 16 },
+  detailButtonText: { color: COLORS.secondary, fontSize: 16 },
 });

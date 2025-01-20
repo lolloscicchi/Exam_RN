@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { memo } from 'react';
 import { useProducts } from '../../hook/useProducts.facade';
-import ProductCard from '../../atoms/productCard/productCard.atom';
+import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainParamList, Screen } from '../../navigation/types';
 import { Product } from '../../models/product.model';

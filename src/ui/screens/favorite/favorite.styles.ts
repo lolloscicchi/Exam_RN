@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../theme/colors.theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#c0ddd1',
+    backgroundColor: COLORS.background,
   },
   itemSeparatorComponent: { height: 20 },
 });

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './productCard.styles';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Product } from '../../models/product.model';
+import { Product } from '../../../models/product.model';
 
 interface ProductCardProps {
   product: Product;
