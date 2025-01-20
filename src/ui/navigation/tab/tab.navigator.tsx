@@ -12,6 +12,14 @@ export default function TabNavigator() {
       screenOptions={({ route }) => {
         return {
           headerShown: true,
+          headerStyle: {
+            backgroundColor: '#889f89',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          headerTitleStyle: {
+            color: '#f2f7f0',
+          },
           tabBarStyle: {
             height: 60,
             backgroundColor: '#889f89',
