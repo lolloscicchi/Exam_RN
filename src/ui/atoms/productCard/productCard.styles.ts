@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: '#f3f6f0',
-    flexDirection: 'row',
     borderRadius: 8,
     padding: 16,
     margin: 8,
@@ -14,6 +13,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
+  mainItemCard: { flexDirection: 'row' },
   imageButtonContainer: {
     flex: 2,
     justifyContent: 'space-between',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     width: 128,
     resizeMode: 'contain',
   },
-  buttonContainer: {
+  buttonsContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -51,4 +51,19 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888',
   },
+  detailButton: {
+    marginTop: 4,
+    paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    backgroundColor: '#899e89',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+  detailButtonText: { color: '#f3f6f0', fontSize: 16 },
 });
