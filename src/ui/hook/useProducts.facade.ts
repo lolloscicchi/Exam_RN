@@ -1,17 +1,5 @@
 import { useCallback, useState } from 'react';
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { Product } from '../models/product.model';
 
 export const useProducts = () => {
   const apiAllProducts = 'https://fakestoreapi.com/products';
