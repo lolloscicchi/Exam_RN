@@ -7,6 +7,5 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
     padding: 12,
   },
-  categoriesFilterContainer: {},
   itemSeparatorComponent: { height: 20 },
 });
