@@ -10,3 +10,13 @@ export interface Product {
     count: number;
   };
 }
+
+export enum Categories {
+  MEN_CLOTHING = "men's clothing",
+
+  JEWELERY = 'jewelery',
+
+  ELECTRONICS = 'electronics',
+
+  WOMEN_CLOTHINS = "women's clothing",
+}
