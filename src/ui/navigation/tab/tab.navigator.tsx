@@ -4,6 +4,7 @@ import { TabParams, Screen } from '../types';
 import HomeScreen from '../../screens/home/home.screen';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FavoriteScreen from '../../screens/favorite/favorite.screen';
+import { COLORS } from '../../theme/colors.theme';
 
 const Tab = createBottomTabNavigator<TabParams>();
 export default function TabNavigator() {
@@ -37,7 +38,7 @@ export default function TabNavigator() {
             };
             return <Ionicons name={iconName()} size={35} color={focused ? '#f2f7f0' : 'gray'} />;
           },
-          tabBarActiveTintColor: '#f2f7f0',
+          tabBarActiveTintColor: COLORS.secondary,
           tabBarInactiveTintColor: 'gray',
           tabBarIconStyle: {
             height: 35,
