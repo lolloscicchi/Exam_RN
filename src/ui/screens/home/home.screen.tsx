@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useProducts } from '../../hook/useProducts.facade';
 import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
-import { Categories, Product } from '../../models/product.model';
+import { Product } from '../../models/product.model';
 import { CategoriesFilter } from '../../components/molecules/categoriesFilter/categoriesFilter.molecule';
 
 interface Props {
@@ -19,7 +19,9 @@ const HomeScreen = ({ navigation }: Props) => {
     favoriteIds,
     setFavoriteIds,
     category,
+    categories,
     refreshProducts,
+    refreshCategories,
     loadFavorites,
     updateFavoriteIds,
     onCategoriesFilterApply,
@@ -59,41 +61,20 @@ const HomeScreen = ({ navigation }: Props) => {
     const unsubscribe = navigation.addListener('focus', () => {
       refreshProducts();
       loadFavorites();
+      refreshCategories();
       console.log(navigation);
     });
     return unsubscribe;
-  }, [favoriteIds, loadFavorites, navigation, refreshProducts]);
+  }, [favoriteIds, loadFavorites, navigation, refreshCategories, refreshProducts]);
 
   // ** UI ** //
 
   return (
     <View style={styles.container}>
       <CategoriesFilter
-        selectedCategories={category}
-        category1={{
-          title: Categories.MEN_CLOTHING,
-          function: () => {
-            onCategoriesFilterApply(Categories.MEN_CLOTHING);
-          },
-        }}
-        category2={{
-          title: Categories.WOMEN_CLOTHINS,
-          function: () => {
-            onCategoriesFilterApply(Categories.WOMEN_CLOTHINS);
-          },
-        }}
-        category3={{
-          title: Categories.ELECTRONICS,
-          function: () => {
-            onCategoriesFilterApply(Categories.ELECTRONICS);
-          },
-        }}
-        category4={{
-          title: Categories.JEWELERY,
-          function: () => {
-            onCategoriesFilterApply(Categories.JEWELERY);
-          },
-        }}
+        selectedCategory={category}
+        categories={categories}
+        onPress={onCategoriesFilterApply}
       />
       <FlatList
         showsVerticalScrollIndicator={false}

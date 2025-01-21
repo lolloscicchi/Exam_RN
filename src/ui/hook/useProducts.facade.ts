@@ -5,10 +5,12 @@ import { storage } from '../../core/storage/storage';
 
 export const useProducts = () => {
   const apiAllProducts = 'https://fakestoreapi.com/products';
+  const apiProductCategories = 'https://fakestoreapi.com/products/categories';
   const [initialProducts, setInitialProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [category, setCategory] = useState<Categories>(Categories.INITIAL);
+  const [categories, setCategories] = useState<Categories[]>([]);
 
   const refreshProducts = useCallback(async () => {
     try {
@@ -16,6 +18,15 @@ export const useProducts = () => {
       const data: Product[] = await response.json();
       setInitialProducts([...data]);
       setProducts([...data]);
+    } catch (error) {
+      console.error('Error fetching carts:', error);
+    }
+  }, []);
+  const refreshCategories = useCallback(async () => {
+    try {
+      const response = await fetch(apiProductCategories);
+      const data: Categories[] = await response.json();
+      setCategories([...data]);
     } catch (error) {
       console.error('Error fetching carts:', error);
     }
@@ -46,8 +57,8 @@ export const useProducts = () => {
   const onCategoriesFilterApply = useCallback(
     (categorySelected: Categories) => {
       if (categorySelected === category) {
-        setCategory(category);
         setProducts([...initialProducts]);
+        setCategory(Categories.INITIAL);
         return;
       }
       setCategory(categorySelected);
@@ -56,7 +67,7 @@ export const useProducts = () => {
         return products.category === categorySelected;
       });
 
-      setProducts(filteredProducts);
+      setProducts([...filteredProducts]);
       console.log(filteredProducts);
     },
     [category, initialProducts]
@@ -69,7 +80,10 @@ export const useProducts = () => {
     setFavoriteIds,
     category,
     setCategory,
+    categories,
+    setCategories,
     refreshProducts,
+    refreshCategories,
     loadFavorites,
     updateFavoriteIds,
     onCategoriesFilterApply,
