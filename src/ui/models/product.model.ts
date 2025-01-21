@@ -19,7 +19,7 @@ export enum CategoryType {
   WOMEN_CLOTHINS = "women's clothing",
 }
 
-export enum SortingRating {
+export enum SortingType {
   INITIAL = 'INITIAL',
   ASCENDENT = 'ASCENDENT',
   DISCENDENT = 'DISCENDENT',

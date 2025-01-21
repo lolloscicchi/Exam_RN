@@ -1,4 +1,4 @@
-import { Categories, CategoryType } from '../../../models/product.model';
+import { CategoryType } from '../../../models/product.model';
 import BasicBooleanButton from '../../atoms/basicBooleanButton/basicBooleanButton.atom';
 import { ScrollView } from 'react-native';
 import React, { memo, useCallback } from 'react';
@@ -6,7 +6,7 @@ import { styles } from './categoriesFilter.styles';
 
 interface CategoriesFilterProps {
   selectedCategory: CategoryType;
-  categories: Categories[];
+  categories: CategoryType[];
   onPress: (item: CategoryType) => void;
 }
 
@@ -16,7 +16,7 @@ export const CategoriesFilter = ({
   onPress,
 }: CategoriesFilterProps) => {
   const renderItem = useCallback(
-    (item: Categories) => {
+    (item: CategoryType) => {
       return (
         <BasicBooleanButton
           title={item}
@@ -29,7 +29,7 @@ export const CategoriesFilter = ({
   );
   return (
     <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
-      {categories.map((item: Categories) => renderItem(item))}
+      {categories.map((item: CategoryType) => renderItem(item))}
     </ScrollView>
   );
 };

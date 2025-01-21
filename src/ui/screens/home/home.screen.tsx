@@ -7,6 +7,7 @@ import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
 import { Product } from '../../models/product.model';
 import { CategoriesFilter } from '../../components/molecules/categoriesFilter/categoriesFilter.molecule';
+import FilterBar from '../../components/molecules/filterBar/filterBar.atom';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
@@ -82,6 +83,7 @@ const HomeScreen = ({ navigation }: Props) => {
         data={products}
         renderItem={renderItem}
       />
+      <FilterBar onPress={() => {}} />
     </View>
   );
 };
