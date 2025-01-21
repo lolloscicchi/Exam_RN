@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Categories, Product } from '../models/product.model';
+import { CategoryType, Product } from '../models/product.model';
 import { FAVORITE_PRODUCTS } from '../../core/storage/types';
 import { storage } from '../../core/storage/storage';
 
@@ -9,8 +9,8 @@ export const useProducts = () => {
   const [initialProducts, setInitialProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
-  const [category, setCategory] = useState<Categories>(Categories.INITIAL);
-  const [categories, setCategories] = useState<Categories[]>([]);
+  const [category, setCategory] = useState<CategoryType>(CategoryType.INITIAL);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
 
   const refreshProducts = useCallback(async () => {
     try {
@@ -25,7 +25,7 @@ export const useProducts = () => {
   const refreshCategories = useCallback(async () => {
     try {
       const response = await fetch(apiProductCategories);
-      const data: Categories[] = await response.json();
+      const data: CategoryType[] = await response.json();
       setCategories([...data]);
     } catch (error) {
       console.error('Error fetching carts:', error);
@@ -55,10 +55,10 @@ export const useProducts = () => {
   );
 
   const onCategoriesFilterApply = useCallback(
-    (categorySelected: Categories) => {
+    (categorySelected: CategoryType) => {
       if (categorySelected === category) {
         setProducts([...initialProducts]);
-        setCategory(Categories.INITIAL);
+        setCategory(CategoryType.INITIAL);
         return;
       }
       setCategory(categorySelected);

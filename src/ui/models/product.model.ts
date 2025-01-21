@@ -11,10 +11,16 @@ export interface Product {
   };
 }
 
-export enum Categories {
+export enum CategoryType {
   INITIAL = 'INITIAL',
   MEN_CLOTHING = "men's clothing",
   JEWELERY = 'jewelery',
   ELECTRONICS = 'electronics',
   WOMEN_CLOTHINS = "women's clothing",
+}
+
+export enum SortingRating {
+  INITIAL = 'INITIAL',
+  ASCENDENT = 'ASCENDENT',
+  DISCENDENT = 'DISCENDENT',
 }

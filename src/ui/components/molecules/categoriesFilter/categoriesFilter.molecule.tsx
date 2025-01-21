@@ -1,13 +1,13 @@
-import { Categories } from '../../../models/product.model';
+import { Categories, CategoryType } from '../../../models/product.model';
 import BasicBooleanButton from '../../atoms/basicBooleanButton/basicBooleanButton.atom';
 import { ScrollView } from 'react-native';
 import React, { memo, useCallback } from 'react';
 import { styles } from './categoriesFilter.styles';
 
 interface CategoriesFilterProps {
-  selectedCategory: Categories;
+  selectedCategory: CategoryType;
   categories: Categories[];
-  onPress: (variable: Categories) => void;
+  onPress: (item: CategoryType) => void;
 }
 
 export const CategoriesFilter = ({
