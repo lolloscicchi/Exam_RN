@@ -45,6 +45,11 @@ export const useProducts = () => {
 
   const onCategoriesFilterApply = useCallback(
     (categorySelected: Categories) => {
+      if (categorySelected === category) {
+        setCategory(category);
+        setProducts([...initialProducts]);
+        return;
+      }
       setCategory(categorySelected);
 
       const filteredProducts: Product[] = [...initialProducts].filter((products: Product) => {
@@ -54,7 +59,7 @@ export const useProducts = () => {
       setProducts(filteredProducts);
       console.log(filteredProducts);
     },
-    [initialProducts]
+    [category, initialProducts]
   );
 
   return {
