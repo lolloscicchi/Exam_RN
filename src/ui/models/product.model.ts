@@ -12,11 +12,9 @@ export interface Product {
 }
 
 export enum Categories {
+  INITIAL = 'INITIAL',
   MEN_CLOTHING = "men's clothing",
-
   JEWELERY = 'jewelery',
-
   ELECTRONICS = 'electronics',
-
   WOMEN_CLOTHINS = "women's clothing",
 }

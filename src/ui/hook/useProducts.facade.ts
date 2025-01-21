@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Product } from '../models/product.model';
+import { Categories, Product } from '../models/product.model';
 import { FAVORITE_PRODUCTS } from '../../core/storage/types';
 import { storage } from '../../core/storage/storage';
 
@@ -8,6 +8,7 @@ export const useProducts = () => {
   const [initialProducts, setInitialProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+  const [category, setCategory] = useState<Categories>(Categories.INITIAL);
 
   const refreshProducts = useCallback(async () => {
     try {
@@ -42,13 +43,30 @@ export const useProducts = () => {
     [favoriteIds]
   );
 
+  const onCategoriesFilterApply = useCallback(
+    (categorySelected: Categories) => {
+      setCategory(categorySelected);
+
+      const filteredProducts: Product[] = [...initialProducts].filter((products: Product) => {
+        return products.category === categorySelected;
+      });
+
+      setProducts(filteredProducts);
+      console.log(filteredProducts);
+    },
+    [initialProducts]
+  );
+
   return {
     products,
     setProducts,
     favoriteIds,
     setFavoriteIds,
+    category,
+    setCategory,
     refreshProducts,
     loadFavorites,
     updateFavoriteIds,
+    onCategoriesFilterApply,
   };
 };

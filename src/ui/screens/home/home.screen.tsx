@@ -18,9 +18,11 @@ const HomeScreen = ({ navigation }: Props) => {
     setProducts,
     favoriteIds,
     setFavoriteIds,
+    category,
     refreshProducts,
     loadFavorites,
     updateFavoriteIds,
+    onCategoriesFilterApply,
   } = useProducts();
 
   // ** CALLBACKS ** //
@@ -43,7 +45,7 @@ const HomeScreen = ({ navigation }: Props) => {
         />
       );
     },
-    [favoriteIds, updateFavoriteIds]
+    [favoriteIds, navigation, updateFavoriteIds]
   );
 
   const ItemSeparatorComponent = useCallback(
@@ -66,7 +68,33 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <CategoriesFilter selectedCategories={Categories.MEN_CLOTHING} />
+      <CategoriesFilter
+        selectedCategories={category}
+        category1={{
+          title: Categories.MEN_CLOTHING,
+          function: () => {
+            onCategoriesFilterApply(Categories.MEN_CLOTHING);
+          },
+        }}
+        category2={{
+          title: Categories.WOMEN_CLOTHINS,
+          function: () => {
+            onCategoriesFilterApply(Categories.WOMEN_CLOTHINS);
+          },
+        }}
+        category3={{
+          title: Categories.ELECTRONICS,
+          function: () => {
+            onCategoriesFilterApply(Categories.ELECTRONICS);
+          },
+        }}
+        category4={{
+          title: Categories.JEWELERY,
+          function: () => {
+            onCategoriesFilterApply(Categories.JEWELERY);
+          },
+        }}
+      />
       <FlatList
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}

@@ -1,44 +1,45 @@
 import { Categories } from '../../../models/product.model';
 import BasicBooleanButton from '../../atoms/basicBooleanButton/basicBooleanButton.atom';
 import { ScrollView } from 'react-native';
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { styles } from './categoriesFilter.styles';
 
 interface CategoriesFilterProps {
   selectedCategories: Categories;
+  category1: { title: string; function: () => void };
+  category2: { title: string; function: () => void };
+  category3: { title: string; function: () => void };
+  category4: { title: string; function: () => void };
 }
 
-export const CategoriesFilter = ({ selectedCategories }: CategoriesFilterProps) => {
-  const [isActive, setIsActive] = useState(false);
+export const CategoriesFilter = ({
+  selectedCategories,
+  category1,
+  category2,
+  category3,
+  category4,
+}: CategoriesFilterProps) => {
   return (
     <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
       <BasicBooleanButton
-        title={Categories.MEN_CLOTHING}
-        isActive={true}
-        onPress={() => {
-          setIsActive((prev) => !prev);
-        }}
+        title={category1.title}
+        isActive={selectedCategories === category1.title}
+        onPress={category1.function}
       />
       <BasicBooleanButton
-        title={Categories.WOMEN_CLOTHINS}
-        isActive={isActive}
-        onPress={() => {
-          setIsActive((prev) => !prev);
-        }}
+        title={category2.title}
+        isActive={selectedCategories === category2.title}
+        onPress={category2.function}
       />
       <BasicBooleanButton
-        title={Categories.ELECTRONICS}
-        isActive={isActive}
-        onPress={() => {
-          setIsActive((prev) => !prev);
-        }}
+        title={category3.title}
+        isActive={selectedCategories === category3.title}
+        onPress={category3.function}
       />
       <BasicBooleanButton
-        title={Categories.JEWELERY}
-        isActive={isActive}
-        onPress={() => {
-          setIsActive((prev) => !prev);
-        }}
+        title={category4.title}
+        isActive={selectedCategories === category4.title}
+        onPress={category4.function}
       />
     </ScrollView>
   );
