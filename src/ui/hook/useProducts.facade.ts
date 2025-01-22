@@ -57,21 +57,31 @@ export const useProducts = () => {
 
   const onCategoriesFilterApply = useCallback(
     (categorySelected: CategoryType) => {
+      let filteredProducts: Product[];
+
       if (categorySelected === category) {
-        setProducts([...initialProducts]);
+        filteredProducts = [...initialProducts];
         setCategory(CategoryType.INITIAL);
-        return;
+      } else {
+        setCategory(categorySelected);
+        filteredProducts = initialProducts.filter((product: Product) => {
+          return product.category === categorySelected;
+        });
       }
-      setCategory(categorySelected);
 
-      const filteredProducts: Product[] = [...initialProducts].filter((products: Product) => {
-        return products.category === categorySelected;
-      });
+      if (ratingSorting !== SortingType.INITIAL) {
+        filteredProducts.sort((a: Product, b: Product) => {
+          if (ratingSorting === SortingType.ASCENDENT) {
+            return a.rating.rate - b.rating.rate;
+          }
+          return b.rating.rate - a.rating.rate;
+        });
+      }
 
-      setProducts([...filteredProducts]);
-      console.log(filteredProducts);
+      // Aggiorna lo stato dei prodotti
+      setProducts(filteredProducts);
     },
-    [category, initialProducts]
+    [category, initialProducts, ratingSorting] // Aggiungi ratingSorting alle dipendenze
   );
 
   const onRatingSortingApply = useCallback(
@@ -81,13 +91,11 @@ export const useProducts = () => {
         setRatingSorting(SortingType.INITIAL);
         return;
       }
-      console.log(products.at(2).rating.rate);
       const sortedProducts: Product[] = [...products].sort((a: Product, b: Product) => {
         setRatingSorting(sortingType);
         if (sortingType === SortingType.ASCENDENT) {
           return a.rating.rate - b.rating.rate;
         }
-        console.log(a.rating.rate, ' : ', b.rating.rate);
         return b.rating.rate - a.rating.rate;
       });
       setProducts(sortedProducts);
