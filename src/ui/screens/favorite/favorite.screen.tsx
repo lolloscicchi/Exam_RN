@@ -66,6 +66,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <FlatList
+        keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
         data={products.filter((product) => favoriteIds.includes(product.id))}

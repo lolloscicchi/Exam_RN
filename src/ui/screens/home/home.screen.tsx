@@ -78,6 +78,7 @@ const HomeScreen = ({ navigation }: Props) => {
         onPress={onCategoriesFilterApply}
       />
       <FlatList
+        keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparatorComponent}
         data={products}
