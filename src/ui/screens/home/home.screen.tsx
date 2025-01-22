@@ -21,6 +21,7 @@ const HomeScreen = ({ navigation }: Props) => {
     setFavoriteIds,
     category,
     categories,
+    ratingSorting,
     refreshProducts,
     refreshCategories,
     loadFavorites,
@@ -94,6 +95,7 @@ const HomeScreen = ({ navigation }: Props) => {
         onReset={() => {
           onRatingSortingApply(SortingType.INITIAL);
         }}
+        sortingType={ratingSorting}
       />
     </View>
   );

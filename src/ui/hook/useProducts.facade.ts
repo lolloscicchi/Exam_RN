@@ -78,6 +78,7 @@ export const useProducts = () => {
     (sortingType: SortingType) => {
       if (sortingType === SortingType.INITIAL) {
         setProducts([...initialProducts]);
+        setRatingSorting(SortingType.INITIAL);
         return;
       }
       console.log(products.at(2).rating.rate);
@@ -103,6 +104,8 @@ export const useProducts = () => {
     setCategory,
     categories,
     setCategories,
+    ratingSorting,
+    setRatingSorting,
     refreshProducts,
     refreshCategories,
     loadFavorites,
