@@ -16,9 +16,7 @@ interface Props {
 const HomeScreen = ({ navigation }: Props) => {
   const {
     products,
-    setProducts,
     favoriteIds,
-    setFavoriteIds,
     category,
     categories,
     ratingSorting,
