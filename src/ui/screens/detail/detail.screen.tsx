@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MainParamList } from '../../navigation/types';
 import { RouteProp } from '@react-navigation/native';
@@ -12,6 +12,8 @@ interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Detail>;
   route: RouteProp<MainParamList, Screen.Detail>;
 }
+
+// CHIAVE API PER LA RIMOZIONE DELLO SFONDO: svvRP8YKsw9VdymyRtC6mvuy
 
 const DetailScreen = ({ navigation, route }: Props) => {
   const { id } = route.params;
@@ -27,8 +29,40 @@ const DetailScreen = ({ navigation, route }: Props) => {
       count: 0,
     },
   });
+  const [image, setImage] = useState(product.image);
   const { favoriteIds, updateFavoriteIds, loadFavorites } = useProducts();
   // ** CALLBACKS ** //
+
+  const removeBackground = async () => {
+    try {
+      const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+        method: 'POST',
+        headers: {
+          'X-Api-Key': 'svvRP8YKsw9VdymyRtC6mvuy', // Sostituisci con la tua chiave API
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image_url: image, // Invia l'URL dell'immagine
+          size: 'auto', // Opzionale: specifica la dimensione dell'output
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Errore durante la richiesta');
+      }
+
+      // Converti la risposta in un blob
+      const blob = await response.blob();
+
+      // Converti il blob in un URL per visualizzare l'immagine
+      const imageUrlWithBackgroundRemoved = URL.createObjectURL(blob);
+      setImage(imageUrlWithBackgroundRemoved);
+    } catch (error) {
+      console.error('Errore durante la rimozione dello sfondo:', error);
+      Alert.alert('Errore', 'Si è verificato un errore durante la rimozione dello sfondo.');
+    }
+  };
+
   // ** USE EFFECT ** //
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
@@ -41,13 +75,14 @@ const DetailScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     loadFavorites();
-  }, [loadFavorites]);
+    removeBackground();
+  }, [image, loadFavorites]);
 
   // ** UI ** //
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image source={{ uri: product.image }} style={styles.productImage} />
+      <Image source={{ uri: image }} style={styles.productImage} />
 
       <View style={styles.titleIsFavoriteContainer}>
         <Text style={styles.title}>{product.title}</Text>

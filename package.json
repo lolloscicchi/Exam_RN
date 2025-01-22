@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.13",
     "@react-navigation/native-stack": "^7.1.14",
@@ -22,8 +23,8 @@
     "react-native-screens": "~4.1.0"
   },
   "devDependencies": {
-    "@react-native-community/cli": "latest",
     "@babel/core": "^7.25.2",
+    "@react-native-community/cli": "latest",
     "@react-native/eslint-plugin": "^0.75.3",
     "@types/react": "~18.3.12",
     "eslint": "^8.57.0",
