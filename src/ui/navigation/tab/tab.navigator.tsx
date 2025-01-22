@@ -14,16 +14,16 @@ export default function TabNavigator() {
         return {
           headerShown: true,
           headerStyle: {
-            backgroundColor: '#889f89',
+            backgroundColor: COLORS.primary,
             alignItems: 'center',
             justifyContent: 'center',
           },
           headerTitleStyle: {
-            color: '#f2f7f0',
+            color: COLORS.secondary,
           },
           tabBarStyle: {
             height: 60,
-            backgroundColor: '#889f89',
+            backgroundColor: COLORS.primary,
             alignItems: 'center',
             justifyContent: 'space-around',
           },
@@ -36,7 +36,13 @@ export default function TabNavigator() {
                   return 'bookmark';
               }
             };
-            return <Ionicons name={iconName()} size={35} color={focused ? '#f2f7f0' : 'gray'} />;
+            return (
+              <Ionicons
+                name={iconName()}
+                size={35}
+                color={focused ? COLORS.secondary : COLORS.lightGrey}
+              />
+            );
           },
           tabBarActiveTintColor: COLORS.secondary,
           tabBarInactiveTintColor: 'gray',
