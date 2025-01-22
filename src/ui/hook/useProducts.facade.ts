@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { CategoryType, Product } from '../models/product.model';
+import { CategoryType, Product, SortingType } from '../models/product.model';
 import { FAVORITE_PRODUCTS } from '../../core/storage/types';
 import { storage } from '../../core/storage/storage';
 
@@ -11,6 +11,7 @@ export const useProducts = () => {
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [category, setCategory] = useState<CategoryType>(CategoryType.INITIAL);
   const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [ratingSorting, setRatingSorting] = useState<SortingType>(SortingType.INITIAL);
 
   const refreshProducts = useCallback(async () => {
     try {
@@ -73,6 +74,26 @@ export const useProducts = () => {
     [category, initialProducts]
   );
 
+  const onRatingSortingApply = useCallback(
+    (sortingType: SortingType) => {
+      if (sortingType === SortingType.INITIAL) {
+        setProducts([...initialProducts]);
+        return;
+      }
+      console.log(products.at(2).rating.rate);
+      const sortedProducts: Product[] = [...products].sort((a: Product, b: Product) => {
+        setRatingSorting(sortingType);
+        if (sortingType === SortingType.ASCENDENT) {
+          return a.rating.rate - b.rating.rate;
+        }
+        console.log(a.rating.rate, ' : ', b.rating.rate);
+        return b.rating.rate - a.rating.rate;
+      });
+      setProducts(sortedProducts);
+    },
+    [initialProducts, products]
+  );
+
   return {
     products,
     setProducts,
@@ -87,5 +108,6 @@ export const useProducts = () => {
     loadFavorites,
     updateFavoriteIds,
     onCategoriesFilterApply,
+    onRatingSortingApply,
   };
 };

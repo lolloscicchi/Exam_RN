@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useProducts } from '../../hook/useProducts.facade';
 import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
-import { Product } from '../../models/product.model';
+import { Product, SortingType } from '../../models/product.model';
 import { CategoriesFilter } from '../../components/molecules/categoriesFilter/categoriesFilter.molecule';
 import FilterBar from '../../components/molecules/filterBar/filterBar.atom';
 
@@ -26,6 +26,7 @@ const HomeScreen = ({ navigation }: Props) => {
     loadFavorites,
     updateFavoriteIds,
     onCategoriesFilterApply,
+    onRatingSortingApply,
   } = useProducts();
 
   // ** CALLBACKS ** //
@@ -83,7 +84,17 @@ const HomeScreen = ({ navigation }: Props) => {
         data={products}
         renderItem={renderItem}
       />
-      <FilterBar onPress={() => {}} />
+      <FilterBar
+        onAscendent={() => {
+          onRatingSortingApply(SortingType.ASCENDENT);
+        }}
+        onDiscendent={() => {
+          onRatingSortingApply(SortingType.DISCENDENT);
+        }}
+        onReset={() => {
+          onRatingSortingApply(SortingType.INITIAL);
+        }}
+      />
     </View>
   );
 };
