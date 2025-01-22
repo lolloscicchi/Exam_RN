@@ -35,7 +35,7 @@ export const useProducts = () => {
 
   const loadFavorites = useCallback(async () => {
     try {
-      const storedFavorites = await storage.getItem(FAVORITE_PRODUCTS);
+      const storedFavorites = storage.getItem(FAVORITE_PRODUCTS);
       const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
       setFavoriteIds(parsedFavorites);
     } catch (error) {
