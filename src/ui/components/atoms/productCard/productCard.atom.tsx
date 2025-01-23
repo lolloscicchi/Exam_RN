@@ -50,7 +50,11 @@ const ProductCard = ({
           <Text style={styles.price}>${product.price.toFixed(2)}</Text>
 
           <Text style={styles.rating}>
-            Rating: {product.rating.rate} ({product.rating.count} reviews)
+            Rating:{' '}
+            <Ionicons name={'star-sharp'} size={16} style={{ borderWidth: 1 }} color={'#ffdb00'} />
+            {product.rating.rate} ({' '}
+            <Ionicons name={'chatbox-ellipses'} size={14} style={{ borderWidth: 1 }} />{' '}
+            {product.rating.count})
           </Text>
         </View>
       </View>
