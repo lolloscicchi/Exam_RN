@@ -112,16 +112,19 @@ export const useProducts = () => {
       console.log(!text);
 
       if (!text) {
-        setProducts(initialProducts);
+        setProducts(filteredProducts);
         return;
       }
       const finalFilteredProducts = [...filteredProducts].filter((product: Product) => {
-        return product.title.includes(text) || product.description.includes(text);
+        return (
+          product.title.toLowerCase().includes(text) ||
+          product.description.toLowerCase().includes(text)
+        );
       });
       console.log(finalFilteredProducts);
       setProducts(finalFilteredProducts);
     },
-    [initialProducts, products]
+    [filteredProducts]
   );
 
   return {
