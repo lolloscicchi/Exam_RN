@@ -8,6 +8,7 @@ export const useProducts = () => {
   const apiProductCategories = 'https://fakestoreapi.com/products/categories';
   const [initialProducts, setInitialProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [category, setCategory] = useState<CategoryType>(CategoryType.INITIAL);
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -19,6 +20,7 @@ export const useProducts = () => {
       const data: Product[] = await response.json();
       setInitialProducts([...data]);
       setProducts([...data]);
+      setFilteredProducts([...data]);
     } catch (error) {
       console.error('Error fetching carts:', error);
     }
@@ -79,7 +81,8 @@ export const useProducts = () => {
       }
 
       // Aggiorna lo stato dei prodotti
-      setProducts(filteredProducts);
+      setProducts([...filteredProducts]);
+      setFilteredProducts([...filteredProducts]);
     },
     [category, initialProducts, ratingSorting] // Aggiungi ratingSorting alle dipendenze
   );
@@ -103,6 +106,24 @@ export const useProducts = () => {
     [initialProducts, products]
   );
 
+  const onSearch = useCallback(
+    (text: string) => {
+      console.log('"', text, '"');
+      console.log(!text);
+
+      if (!text) {
+        setProducts(initialProducts);
+        return;
+      }
+      const finalFilteredProducts = [...filteredProducts].filter((product: Product) => {
+        return product.title.includes(text) || product.description.includes(text);
+      });
+      console.log(finalFilteredProducts);
+      setProducts(finalFilteredProducts);
+    },
+    [initialProducts, products]
+  );
+
   return {
     products,
     setProducts,
@@ -120,5 +141,6 @@ export const useProducts = () => {
     updateFavoriteIds,
     onCategoriesFilterApply,
     onRatingSortingApply,
+    onSearch,
   };
 };

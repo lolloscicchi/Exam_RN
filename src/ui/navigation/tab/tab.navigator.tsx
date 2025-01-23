@@ -15,8 +15,6 @@ export default function TabNavigator() {
           headerShown: true,
           headerStyle: {
             backgroundColor: COLORS.primary,
-            alignItems: 'center',
-            justifyContent: 'center',
           },
           headerTitleStyle: {
             color: COLORS.secondary,
