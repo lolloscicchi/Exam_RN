@@ -117,7 +117,11 @@ const HomeScreen = ({ navigation }: Props) => {
           renderItem={renderItem}
         />
       ) : (
-        <Text style={{ flex: 1 }}>{'nessun prodotto'}</Text>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ justifyContent: 'center', fontSize: 20, color: COLORS.primary }}>
+            {'No products found'}
+          </Text>
+        </View>
       )}
 
       <FilterBar
