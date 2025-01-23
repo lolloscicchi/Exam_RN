@@ -108,18 +108,6 @@ const HomeScreen = ({ navigation }: Props) => {
         categories={categories}
         onPress={onCategoriesFilterApply}
       />
-      {products.length > 0 ? (
-        <FlatList
-          keyExtractor={(item) => item.id.toString()}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={ItemSeparatorComponent}
-          data={products}
-          renderItem={renderItem}
-        />
-      ) : (
-        <Text style={{ flex: 1 }}>{'nessun prodotto'}</Text>
-      )}
-
       <FilterBar
         onAscendent={() => {
           onRatingSortingApply(SortingType.ASCENDENT);
@@ -132,6 +120,17 @@ const HomeScreen = ({ navigation }: Props) => {
         }}
         sortingType={ratingSorting}
       />
+      {products.length > 0 ? (
+        <FlatList
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={ItemSeparatorComponent}
+          data={products}
+          renderItem={renderItem}
+        />
+      ) : (
+        <Text style={{ flex: 1 }}>{'nessun prodotto'}</Text>
+      )}
     </View>
   );
 };
