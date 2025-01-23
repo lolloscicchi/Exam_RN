@@ -36,7 +36,6 @@ const DetailScreen = ({ navigation, route }: Props) => {
       .then((response: Product) => {
         setProduct(response);
       });
-    console.log(product);
   }, [id, product]);
 
   useEffect(() => {
