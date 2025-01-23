@@ -111,6 +111,10 @@ export const useProducts = () => {
       console.log('"', text, '"');
       console.log(!text);
 
+      text = text.toLowerCase();
+
+      console.log(text);
+
       if (!text) {
         setProducts(filteredProducts);
         return;
