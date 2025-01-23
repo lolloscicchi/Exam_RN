@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
+import { FlatList, ListRenderItem, Text, View } from 'react-native';
 import { memo } from 'react';
 import { useProducts } from '../../hook/useProducts.facade';
 import ProductCard from '../../components/atoms/productCard/productCard.atom';
@@ -13,15 +13,8 @@ interface Props {
 }
 
 const FavoriteScreen = ({ navigation }: Props) => {
-  const {
-    products,
-    setProducts,
-    favoriteIds,
-    setFavoriteIds,
-    refreshProducts,
-    loadFavorites,
-    updateFavoriteIds,
-  } = useProducts();
+  const { products, favoriteIds, refreshProducts, loadFavorites, updateFavoriteIds } =
+    useProducts();
 
   // ** CALLBACKS ** //
 
@@ -65,13 +58,19 @@ const FavoriteScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={ItemSeparatorComponent}
-        data={products.filter((product) => favoriteIds.includes(product.id))}
-        renderItem={renderItem}
-      />
+      {favoriteIds.length > 0 ? (
+        <FlatList
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={ItemSeparatorComponent}
+          data={products.filter((product) => favoriteIds.includes(product.id))}
+          renderItem={renderItem}
+        />
+      ) : (
+        <View style={styles.noProductsContainer}>
+          <Text style={styles.noProductsText}>{'Add a product to your favorites'}</Text>
+        </View>
+      )}
     </View>
   );
 };

@@ -7,9 +7,9 @@ import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
 import { Product, SortingType } from '../../models/product.model';
 import { CategoriesFilter } from '../../components/molecules/categoriesFilter/categoriesFilter.molecule';
-import FilterBar from '../../components/molecules/filterBar/filterBar.atom';
 import { COLORS } from '../../theme/colors.theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import FilterBar from '../../components/molecules/filterBar/filterBar.atom';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
@@ -78,7 +78,7 @@ const HomeScreen = ({ navigation }: Props) => {
       <View
         style={{
           flexDirection: 'row',
-          backgroundColor: COLORS.white,
+          backgroundColor: COLORS.secondary,
           paddingVertical: 12,
           paddingHorizontal: 20,
           marginBottom: 12,
@@ -88,6 +88,7 @@ const HomeScreen = ({ navigation }: Props) => {
           name={'search'}
           style={{
             flex: 1,
+            paddingHorizontal: 12,
           }}
           size={24}
         />
@@ -96,18 +97,32 @@ const HomeScreen = ({ navigation }: Props) => {
             flex: 10,
             fontSize: 20,
           }}
+          placeholder={'Search'}
           keyboardType={'default'}
           multiline={false}
           maxLength={50}
           onChangeText={(item) => onSearch(item)}
         />
       </View>
-
-      <CategoriesFilter
-        selectedCategory={category}
-        categories={categories}
-        onPress={onCategoriesFilterApply}
-      />
+      <View style={{ backgroundColor: 'transparent' }}>
+        <CategoriesFilter
+          selectedCategory={category}
+          categories={categories}
+          onPress={onCategoriesFilterApply}
+        />
+        <FilterBar
+          onAscendent={() => {
+            onRatingSortingApply(SortingType.ASCENDENT);
+          }}
+          onDiscendent={() => {
+            onRatingSortingApply(SortingType.DISCENDENT);
+          }}
+          onReset={() => {
+            onRatingSortingApply(SortingType.INITIAL);
+          }}
+          sortingType={ratingSorting}
+        />
+      </View>
       {products.length > 0 ? (
         <FlatList
           keyExtractor={(item) => item.id.toString()}
@@ -117,25 +132,10 @@ const HomeScreen = ({ navigation }: Props) => {
           renderItem={renderItem}
         />
       ) : (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ justifyContent: 'center', fontSize: 20, color: COLORS.primary }}>
-            {'No products found'}
-          </Text>
+        <View style={styles.noProductsContainer}>
+          <Text style={styles.noProductsText}>{'No products found'}</Text>
         </View>
       )}
-
-      <FilterBar
-        onAscendent={() => {
-          onRatingSortingApply(SortingType.ASCENDENT);
-        }}
-        onDiscendent={() => {
-          onRatingSortingApply(SortingType.DISCENDENT);
-        }}
-        onReset={() => {
-          onRatingSortingApply(SortingType.INITIAL);
-        }}
-        sortingType={ratingSorting}
-      />
     </View>
   );
 };

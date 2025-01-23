@@ -8,4 +8,6 @@ export const styles = StyleSheet.create({
     padding: 12,
   },
   itemSeparatorComponent: { height: 20 },
+  noProductsContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  noProductsText: { justifyContent: 'center', fontSize: 20, color: COLORS.primary },
 });
