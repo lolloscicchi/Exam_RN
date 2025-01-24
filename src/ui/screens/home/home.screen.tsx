@@ -119,6 +119,7 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
           onReset={() => {
             onRatingSortingApply(SortingType.INITIAL);
+            onCategoriesFilterApply(category);
           }}
           sortingType={ratingSorting}
         />
