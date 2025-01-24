@@ -1,7 +1,7 @@
 import { CategoryType } from '../../../models/product.model';
 import BasicBooleanButton from '../../atoms/basicBooleanButton/basicBooleanButton.atom';
 import { ScrollView, View } from 'react-native';
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { styles } from './categoriesFilter.styles';
 
 interface CategoriesFilterProps {
@@ -35,4 +35,3 @@ export const CategoriesFilter = ({
     </View>
   );
 };
-export default memo(CategoriesFilter);
