@@ -43,19 +43,17 @@ const ProductCard = ({
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{product.title}</Text>
-
           <Text style={styles.description} numberOfLines={2}>
             {product.description}
           </Text>
           <Text style={styles.price}>${product.price.toFixed(2)}</Text>
-
-          <Text style={styles.rating}>
-            Rating:{' '}
-            <Ionicons name={'star-sharp'} size={16} style={{ borderWidth: 1 }} color={'#ffdb00'} />
-            {product.rating.rate} ({' '}
-            <Ionicons name={'chatbox-ellipses'} size={14} style={{ borderWidth: 1 }} />{' '}
-            {product.rating.count})
-          </Text>
+          <View style={styles.ratingContainer}>
+            <Text style={styles.rating}>Rating: </Text>
+            <Ionicons name={'star'} size={16} color={'#ffdb00'} />
+            <Text style={styles.rating}> {product.rating.rate} ( </Text>
+            <Ionicons name={'chatbox-ellipses'} size={14} />
+            <Text style={styles.rating}> {product.rating.count} )</Text>
+          </View>
         </View>
       </View>
       <TouchableOpacity onPress={openProduct} style={styles.detailButton} activeOpacity={0.5}>

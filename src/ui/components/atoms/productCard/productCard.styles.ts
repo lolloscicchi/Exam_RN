@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
     color: COLORS.darkGrey,
     marginBottom: 8,
   },
+  ratingContainer: { flexDirection: 'row', alignItems: 'center' },
   rating: {
     fontSize: 14,
     color: COLORS.lightGrey,
