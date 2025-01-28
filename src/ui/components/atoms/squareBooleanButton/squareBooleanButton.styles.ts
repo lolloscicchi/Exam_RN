@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 import { COLORS } from '../../../theme/colors.theme';
 
 export const styles = StyleSheet.create({
-  container: {
+  container: { alignItems: 'center' },
+  button: {
     padding: 8,
     borderRadius: 12,
   },
