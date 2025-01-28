@@ -7,6 +7,7 @@ import { Product } from '../../models/product.model';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { styles } from './detail.styles';
 import { useProducts } from '../../hook/useProducts.facade';
+import SquareBooleanButton from '../../components/atoms/squareBooleanButton/squareBooleanButton.atom';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Detail>;
@@ -46,8 +47,26 @@ const DetailScreen = ({ navigation, route }: Props) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image source={{ uri: product.image }} style={styles.productImage} />
+      <View style={styles.headerContainer}>
+        <View style={styles.arrowButtonContainer}>
+          <SquareBooleanButton
+            iconName={'arrow-back-circle'}
+            size={30}
+            isActive={false}
+            onPress={() => {}}
+          />
+        </View>
 
+        <Image source={{ uri: product.image }} style={styles.productImage} />
+        <View style={styles.arrowButtonContainer}>
+          <SquareBooleanButton
+            iconName={'arrow-forward-circle'}
+            size={30}
+            isActive={false}
+            onPress={() => {}}
+          />
+        </View>
+      </View>
       <View style={styles.titleIsFavoriteContainer}>
         <Text style={styles.title}>{product.title}</Text>
         <TouchableOpacity onPress={() => updateFavoriteIds(product)}>

@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     padding: 16,
   },
   titleIsFavoriteContainer: { flexDirection: 'row', alignItems: 'center' },
+  arrowButtonContainer: { flex: 1 },
   title: {
     flex: 1,
     fontSize: 28,
@@ -15,8 +16,9 @@ export const styles = StyleSheet.create({
     color: COLORS.black,
     marginBottom: 16,
   },
+  headerContainer: { flexDirection: 'row' },
   productImage: {
-    width: '100%',
+    flex: 5,
     height: 300,
     resizeMode: 'contain',
     marginBottom: 16,
