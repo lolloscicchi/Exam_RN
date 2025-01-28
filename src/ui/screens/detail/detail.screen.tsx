@@ -36,7 +36,7 @@ const DetailScreen = ({ navigation, route }: Props) => {
       .then((response: Product) => {
         setProduct(response);
       });
-  }, [id, product]);
+  }, [id]);
 
   useEffect(() => {
     loadFavorites();
