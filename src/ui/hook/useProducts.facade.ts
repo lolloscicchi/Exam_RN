@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CategoryType, Product, SortingType } from '../models/product.model';
 import { FAVORITE_PRODUCTS } from '../../core/storage/types';
 import { storage } from '../../core/storage/storage';
@@ -10,6 +10,7 @@ export const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+  const [searchText, setSearchText] = useState<string>('');
   const [category, setCategory] = useState<CategoryType>(CategoryType.INITIAL);
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [ratingSorting, setRatingSorting] = useState<SortingType>(SortingType.INITIAL);
@@ -80,11 +81,10 @@ export const useProducts = () => {
         });
       }
 
-      // Aggiorna lo stato dei prodotti
       setProducts([...filteredProducts]);
       setFilteredProducts([...filteredProducts]);
     },
-    [category, initialProducts, ratingSorting] // Aggiungi ratingSorting alle dipendenze
+    [category, initialProducts, ratingSorting]
   );
 
   const onRatingSortingApply = useCallback(
@@ -92,6 +92,7 @@ export const useProducts = () => {
       if (sortingType === SortingType.INITIAL) {
         setProducts([...initialProducts]);
         setRatingSorting(SortingType.INITIAL);
+        setSearchText('');
         return;
       }
       const sortedProducts: Product[] = [...products].sort((a: Product, b: Product) => {
@@ -106,30 +107,27 @@ export const useProducts = () => {
     [initialProducts, products]
   );
 
-  const onSearch = useCallback(
-    (text: string) => {
-      console.log('"', text, '"');
-      console.log(!text);
+  useEffect(() => {
+    console.log('"', searchText, '"');
+    console.log(!searchText);
 
-      text = text.toLowerCase();
+    setSearchText((prev) => prev.toLowerCase());
 
-      console.log(text);
+    console.log(searchText);
 
-      if (!text) {
-        setProducts(filteredProducts);
-        return;
-      }
-      const finalFilteredProducts = [...filteredProducts].filter((product: Product) => {
-        return (
-          product.title.toLowerCase().includes(text) ||
-          product.description.toLowerCase().includes(text)
-        );
-      });
-      console.log(finalFilteredProducts);
-      setProducts(finalFilteredProducts);
-    },
-    [filteredProducts]
-  );
+    if (!searchText) {
+      setProducts(filteredProducts);
+      return;
+    }
+    const finalFilteredProducts = [...filteredProducts].filter((product: Product) => {
+      return (
+        product.title.toLowerCase().includes(searchText) ||
+        product.description.toLowerCase().includes(searchText)
+      );
+    });
+    console.log(finalFilteredProducts);
+    setProducts(finalFilteredProducts);
+  }, [filteredProducts, searchText]);
 
   return {
     products,
@@ -142,12 +140,13 @@ export const useProducts = () => {
     setCategories,
     ratingSorting,
     setRatingSorting,
+    searchText,
+    setSearchText,
     refreshProducts,
     refreshCategories,
     loadFavorites,
     updateFavoriteIds,
     onCategoriesFilterApply,
     onRatingSortingApply,
-    onSearch,
   };
 };

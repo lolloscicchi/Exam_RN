@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { FlatList, ListRenderItem, View, TextInput, Text } from 'react-native';
+import { FlatList, ListRenderItem, View, Text } from 'react-native';
 import { MainParamList, Screen } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useProducts } from '../../hook/useProducts.facade';
@@ -7,9 +7,8 @@ import ProductCard from '../../components/atoms/productCard/productCard.atom';
 import { styles } from './home.styles';
 import { Product, SortingType } from '../../models/product.model';
 import { CategoriesFilter } from '../../components/molecules/categoriesFilter/categoriesFilter.molecule';
-import { COLORS } from '../../theme/colors.theme';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import FilterBar from '../../components/molecules/filterBar/filterBar.atom';
+import SearchBar from '../../components/atoms/searchBar/searchBar.atom';
 
 interface Props {
   navigation: NativeStackNavigationProp<MainParamList, Screen.Home>;
@@ -21,6 +20,8 @@ const HomeScreen = ({ navigation }: Props) => {
     favoriteIds,
     category,
     categories,
+    searchText,
+    setSearchText,
     ratingSorting,
     refreshProducts,
     refreshCategories,
@@ -28,7 +29,6 @@ const HomeScreen = ({ navigation }: Props) => {
     updateFavoriteIds,
     onCategoriesFilterApply,
     onRatingSortingApply,
-    onSearch,
   } = useProducts();
 
   // ** CALLBACKS ** //
@@ -75,35 +75,7 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: COLORS.secondary,
-          paddingVertical: 12,
-          paddingHorizontal: 20,
-          marginBottom: 12,
-          borderRadius: 12,
-        }}>
-        <Ionicons
-          name={'search'}
-          style={{
-            flex: 1,
-            paddingHorizontal: 12,
-          }}
-          size={24}
-        />
-        <TextInput
-          style={{
-            flex: 10,
-            fontSize: 20,
-          }}
-          placeholder={'Search'}
-          keyboardType={'default'}
-          multiline={false}
-          maxLength={50}
-          onChangeText={(item) => onSearch(item)}
-        />
-      </View>
+      <SearchBar text={searchText} onSearch={setSearchText} />
       <View style={{ backgroundColor: 'transparent' }}>
         <CategoriesFilter
           selectedCategory={category}
