@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainParamList, Screen } from './types';
 import TabNavigator from './tab/tab.navigator';
 import DetailScreen from '../screens/detail/detail.screen';
+import ImageScreen from '../screens/image/image.screen';
 
 const Stack = createNativeStackNavigator<MainParamList>(); //viene creato lo stack dove verranno depositate tutte le schermate
 const RootStack = () => {
@@ -11,6 +12,7 @@ const RootStack = () => {
       <Stack.Group>
         <Stack.Screen name={'TabNavigator'} component={TabNavigator} />
         <Stack.Screen name={Screen.Detail} component={DetailScreen} />
+        <Stack.Screen name={Screen.Image} component={ImageScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

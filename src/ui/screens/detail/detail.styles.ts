@@ -17,9 +17,9 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   headerContainer: { flexDirection: 'row' },
+  productImageContainer: { flex: 5, height: 300 },
   productImage: {
-    flex: 5,
-    height: 300,
+    flex: 1,
     resizeMode: 'contain',
     marginBottom: 16,
   },

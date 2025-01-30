@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MainParamList } from '../../navigation/types';
+import { MainParamList, Screen } from '../../navigation/types';
 import { RouteProp } from '@react-navigation/native';
 import { Product } from '../../models/product.model';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -57,7 +57,13 @@ const DetailScreen = ({ navigation, route }: Props) => {
           />
         </View>
 
-        <Image source={{ uri: product.image }} style={styles.productImage} />
+        <Pressable
+          style={styles.productImageContainer}
+          onPress={() => {
+            navigation.navigate(Screen.Image, { uri: product.image });
+          }}>
+          <Image source={{ uri: product.image }} style={styles.productImage} />
+        </Pressable>
         <View style={styles.arrowButtonContainer}>
           <SquareBooleanButton
             iconName={'arrow-forward-circle'}
